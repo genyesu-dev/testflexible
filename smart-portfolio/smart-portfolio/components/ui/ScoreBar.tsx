@@ -1,18 +1,21 @@
 
 interface ScoreBarProps {
-  label: string;
+  label?: string;
+  name?: string;
+  weight?: number;
   score: number;
   maxScore: number;
   detail: string;
   color: string;
 }
 
-export default function ScoreBar({ label, score, maxScore, detail, color }: ScoreBarProps) {
+export default function ScoreBar({ label, name, score, maxScore, detail, color }: ScoreBarProps) {
+  const displayLabel = label ?? name ?? '';
   const pct = maxScore > 0 ? (score / maxScore) * 100 : 0;
   return (
     <div className="space-y-1">
       <div className="flex justify-between items-center">
-        <span className="text-sm font-medium text-gray-700">{label}</span>
+        <span className="text-sm font-medium text-gray-700">{displayLabel}</span>
         <span className="text-xs text-gray-400">{detail}</span>
       </div>
       <div className="flex items-center gap-2">
